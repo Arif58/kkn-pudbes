@@ -14,7 +14,11 @@ module.exports = {
         "hijau": "#606C5D"
       },
       backgroundImage: {
-        'bgfood': "url('../public/images/food.jpg')",
+        'food1': "url('/public/images/food.jpg')",
+        'food2': "url('/public/images/food.png')",
+      },
+      fontFamily: {
+        'poppins': ['Poppins']
       },
     },
   },

@@ -6,8 +6,8 @@
   @vite('resources/css/app.css')
 </head>
 <body>
-    <div class="bg-putih min-h-screen text-hijau">
-        <div class="w-full md:h-[150px] h-[75px] flex justify-center items-center bg-hijau">
+    <div class="bg-putih min-h-screen text-hijau font-poppins">
+        <div class="w-full md:h-[150px] h-[75px] flex justify-center items-center bg-food2 md:bg-food1">
             <h1 class="md:text-5xl text-2xl font-bold text-putih">
                 Kalkulator Kalori Makanan
             </h1>
@@ -41,7 +41,7 @@
                 Pencarian Makanan
             </h2>
                
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <div class="relative overflow-x-auto shadow-md rounded-lg">
                 <table class="w-full text-sm text-left text-hijau">
                     <thead class="text-xs uppercase bg-hijau text-putih">
                         <tr>
@@ -122,7 +122,7 @@
                 Hasil Kalkulasi
             </h2>
                         
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <div class="relative overflow-x-auto shadow-md rounded-lg">
                 <table class="w-full text-sm text-left text-hijau">
                     <thead class="text-xs uppercase bg-hijau text-putih">
                         <tr>

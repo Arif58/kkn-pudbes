@@ -1,11 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class CalculationController extends Controller
 {
+    public function index()
+    {
+        return view('kalori.akg');
+    }
+    
     public function calculate(Request $request)
     {
         // Ambil nilai TB, BB, usia, jenis kelamin, dan tingkat aktivitas dari input form
@@ -24,7 +30,7 @@ class CalculationController extends Controller
         $akg *= $tingkatAktivitas;
 
         // Kembalikan hasil kalkulasi ke tampilan
-        return view('akg', compact('akg'));
+        return view('kalori.akg', compact('akg'));
     }
 
 }

@@ -1,10 +1,12 @@
 <!doctype html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  @vite('resources/css/app.css')
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite('resources/css/app.css')
 </head>
+
 <body>
     <div class="bg-putih min-h-screen text-hijau font-poppins">
         <div class="w-full md:h-[200px] h-[100px] flex justify-center items-center bg-akg2 md:bg-akg1">
@@ -16,14 +18,15 @@
             <p>Selamat datang di website Kalkulator AKG (Angka Kecukupukan Gizi)!</p>
             <p class="text-justify py-5">
                 Laman website ini dapat membantu Anda untuk menghitung Angka Kecukupan Gizi harian.
-                AKG dihitung berdasarkan BB (Berat Badan), TB (Tinggi Badan), usia, jenis kelamin, dan tingkat aktivitas Anda.
+                AKG dihitung berdasarkan BB (Berat Badan), TB (Tinggi Badan), usia, jenis kelamin, dan tingkat aktivitas
+                Anda.
                 Jika Anda ingin menghitung AKG, silahkan klik
-                <a href="/list" class="underline text-oren">
+                <a href="/kalori" class="underline text-oren">
                     tautan ini.
                 </a>
             </p>
         </div>
-        <form action="/makanan" method="POST">
+        <form action="/akg/calculator" method="POST">
             @csrf
             <label for="tb">Tinggi Badan (cm):</label>
             <input type="text" id="tb" name="tb" required>
@@ -52,11 +55,12 @@
             <button type="submit">Hitung</button>
         </form>
         <div>
-        @if (isset($akg))
-            <p>Angka Kecukupan Gizi (AKG): {{ $akg }}</p>
-        @endif
-    </div>
+            @if (isset($akg))
+                <p>Angka Kecukupan Gizi (AKG): {{ $akg }}</p>
+            @endif
+        </div>
         <footer class="text-sm text-center">© KKN PPM UGM 2023 - PUDING BESAR PERIODE II</footer>
     </div>
 </body>
+
 </html>

@@ -3,7 +3,8 @@
 // use App\Http\Controllers\DashboardAdmin\TourismController;
 
 use App\Http\Controllers\DashboardAdmin\TourismController as AdminDashboardTourismController;
-use App\Http\Controllers\CalculationController;
+use App\Http\Controllers\Client\CalculationController as ClientCalculationController;
+use App\Http\Controllers\Client\FoodController as ClientFoodController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,18 +22,17 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'dashboard'], function () {
-    // Route::get('/wisata', 'DashboardAdmin\TourismController@index')->name('wisata.index');
     Route::get('/wisata', [AdminDashboardTourismController::class, 'index'])->name('wisate.index');
     Route::get('/wisata/create', [AdminDashboardTourismController::class, 'create'])->name('wisata.create');
     Route::post('/wisata', [AdminDashboardTourismController::class, 'store'])->name('wisata.store');
 });
 
-Route::get('/list', function(){
-    return view('kalori.list');
+Route::group(['prefix' => 'kalori'], function() {
+    Route::get('/', [ClientFoodController::class, 'index']);
+    Route::post('/calculator', [ClientFoodController::class, 'calculate']);
 });
 
-Route::get('/akg', function(){
-    return view('kalori.akg');
+Route::group(['prefix' => 'akg'], function() {
+    Route::get('/', [ClientCalculationController::class, 'index']);
+    Route::post('/calculator', [ClientCalculationController::class, 'calculate'])->name('calculation.calculate');
 });
-
-Route::post('/makanan', [CalculationController::class, 'calculate'])->name('calculation.calculate');

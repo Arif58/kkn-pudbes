@@ -16,6 +16,8 @@ module.exports = {
       backgroundImage: {
         'food1': "url('/public/images/food.jpg')",
         'food2': "url('/public/images/food.png')",
+        'akg1': "url('/public/images/akg1.jpg')",
+        'akg2': "url('/public/images/akg2.jpg')",
       },
       fontFamily: {
         'poppins': ['Poppins']

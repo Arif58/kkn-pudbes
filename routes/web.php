@@ -25,3 +25,7 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/wisata/create', [AdminDashboardTourismController::class, 'create'])->name('wisata.create');
     Route::post('/wisata', [AdminDashboardTourismController::class, 'store'])->name('wisata.store');
 });
+
+Route::get('/makanan', function(){
+    return view('kalori.makanan');
+});

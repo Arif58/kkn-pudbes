@@ -93,7 +93,7 @@
                         </tbody>
                     </table>
                     <div class="py-4 text-center">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        <button class="bg-hijau text-white font-bold py-2 px-4 rounded"
                             type="submit">Hitung Total Kalori</button>
                     </div>
                 </form>

@@ -20,7 +20,7 @@ module.exports = {
         'akg2': "url('/public/images/akg2.jpg')",
       },
       fontFamily: {
-        'poppins': ['Poppins']
+        'poppins': ['Poppins', 'sans-serif']
       },
     },
   },

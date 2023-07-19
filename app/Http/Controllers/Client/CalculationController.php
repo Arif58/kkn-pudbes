@@ -29,8 +29,19 @@ class CalculationController extends Controller
         }
         $akg *= $tingkatAktivitas;
 
+        // Lakukan perhitungan protein, karbohidrat, dan lemak
+        $totalKalori = $akg;
+        $proteinKalori = 0.15 * $totalKalori;
+        $lemakKalori = 0.20 * $totalKalori;
+        $karbohidratKalori = 0.65 * $totalKalori;
+
+        // Ubah kalori menjadi gram
+        $proteinGram = $proteinKalori / 4;
+        $lemakGram = $lemakKalori / 9;
+        $karbohidratGram = $karbohidratKalori / 4;
+
         // Kembalikan hasil kalkulasi ke tampilan
-        return view('kalori.akg', compact('akg'));
+        return view('kalori.akg', compact('akg', 'proteinGram', 'lemakGram', 'karbohidratGram'));
     }
 
 }

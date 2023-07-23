@@ -40,8 +40,7 @@
             </h2>
 
             <div class="relative overflow-x-auto shadow-md rounded-lg">
-                <form id="calorie-calculator-form">
-                    <table id="data-table" class="w-full text-sm text-left text-hijau">
+                <table id="data-table" class="w-full text-sm text-left text-hijau">
                         <thead class="text-xs uppercase bg-hijau text-putih">
                             <tr>
                                 <th scope="col" class="px-2 py-3">
@@ -55,7 +54,7 @@
                                 </th>
                                 <th scope="col" class="px-6 py-3">
                                     Berat (gram)
-                                </th>                                
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -63,11 +62,7 @@
                             @foreach ($food as $data)
                                 <tr class="bg-white border-b">
                                     <td class="px-3 py-4 text-right">
-                                        {{-- <a href="#" class="font-medium text-oren hover:underline">Tambah</a> --}}
-                                        {{-- <button onclick="addFood()"
-                                        class="font-medium text-oren hover:underline">Tambah</button> --}}
-                                        <input type="checkbox" class="food-checkbox" value="{{ $data->calorie }}"
-                                            data-id="{{ $data->id }}">
+                                        <button class="add-food-btn text-green-600">Tambah</button>
                                     </td>
                                     <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
                                         {{ $data->name }}
@@ -77,52 +72,69 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         {{ $data->weight }}
-                                    </td>                                    
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="row py-2">
-                        <div class="col-md-12">
-                            {{ $food->links('pagination::tailwind') }}
-                        </div>
-                    </div>
-                    <div class="py-4 text-center">
-                        <button class="bg-hijau text-white font-bold py-2 px-4 rounded"
-                            type="submit">Hitung Total Kalori</button>
-                    </div>
-                </form>
             </div>
             <h2 class="md:text-2xl text-lg font-bold text-oren py-3">
-                Hasil Kalkulasi
+                Pilihan Makanan
             </h2>
-            <div id="calorie-result-container"></div>
+            <div class="relative overflow-x-auto shadow-md rounded-lg">
+                <table id="selected-foods" class="w-full text-sm text-left text-hijau">
+                    <thead class="text-xs uppercase bg-hijau text-putih">
+                        <tr>
+                            <th scope="col" class="px-2 py-3">
+                                <span class="sr-only">Aksi</span>
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Nama Makanan
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Kalori (kal)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Tabel pilihan makanan akan ditampilkan di sini -->
+                    </tbody>
+                </table>                
+            </div>
+            <div class="text-right font-bold mt-3" id="total-calorie-display">
+                Total Kalori: <span id="total-calorie">0</span> kal
+            </div>
         </div>
         <footer class="text-sm text-center">© KKN PPM UGM 2023 - PUDING BESAR PERIODE II</footer>
     </div>
     <script>
-        // Assuming you have jQuery included in your project
-
-        // Assuming you have jQuery included in your project
-
         $(document).ready(function() {
-            // Submit event handler for the form
-            $('#calorie-calculator-form').submit(function(event) {
-                event.preventDefault();
+            // Event listener untuk tombol "Tambah" di tabel seluruh data kalori makanan
+            $('#data-table').on('click', '.add-food-btn', function() {
+                var foodRow = $(this).closest('tr');
+                var foodName = foodRow.find('th').text();
+                var calorie = parseInt(foodRow.find('td:eq(1)').text());
+                var row = `
+                    <tr class="bg-white border-b">
+                        <td class="px-3 py-4 text-right">
+                            <button class="remove-food-btn text-red-600">Hapus</button>
+                        </td>
+                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
+                            ${foodName}
+                        </th>
+                        <td class="px-6 py-4">
+                            ${calorie}
+                        </td>
+                    </tr>
+                `;
+                $('#selected-foods tbody').append(row);
+                calculateTotalCalorie(); // Recalculate total calorie after adding food
+            });
 
-                // Get selected checkboxes and their values
-                var selectedFoods = [];
-                $('.food-checkbox:checked').each(function() {
-                    selectedFoods.push(parseInt($(this).val()));
-                });
-
-                // Calculate total calories
-                var totalCalories = selectedFoods.reduce(function(acc, curr) {
-                    return acc + curr;
-                }, 0);
-
-                // Display the result
-                $('#calorie-result-container').text('Total Calories: ' + totalCalories);
+            // Event listener untuk tombol "Hapus" di tabel pilihan makanan
+            $('#selected-foods').on('click', '.remove-food-btn', function() {
+                $(this).closest('tr').remove();
+                calculateTotalCalorie(); // Recalculate total calorie after removing food
             });
 
             // Attach event listener to the search input
@@ -141,8 +153,21 @@
                     }
                 });
             });
+
+            // Function to calculate total calorie
+            function calculateTotalCalorie() {
+                var totalCalorie = 0;
+
+                // Loop through each row in the selected-foods table
+                $('#selected-foods tbody tr').each(function() {
+                    var calorie = parseInt($(this).find('td:eq(1)').text());
+                    totalCalorie += calorie;
+                });
+
+                // Update the total calorie display
+                $('#total-calorie').text(totalCalorie);
+            }
         });
     </script>
 </body>
-
 </html>

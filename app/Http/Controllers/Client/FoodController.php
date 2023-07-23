@@ -8,14 +8,11 @@ use Illuminate\Http\Request;
 
 class FoodController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         // $boundary = 10;
         // $food = Food::orderBy('name', 'asc')->paginate($boundary);
-        $food = Food::orderBy('name', 'asc')->paginate(15);
+        $food = Food::orderBy('name', 'asc')->get();
         // dd($food);
         return view('kalori.list', compact('food'));
     }

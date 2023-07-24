@@ -28,7 +28,6 @@
                 </a>
             </p>
 
-            <label for="simple-search" class="sr-only">Cari</label>
             <div class="relative w-full">
                 <input type="text" id="search-input"
                     class="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-5 p-2.5"
@@ -77,6 +76,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div id="no-data-message" class="text-hijau bg-white p-4 text-center font-semibold" style="display: none;"></div>
             </div>
             <h2 class="md:text-2xl text-lg font-bold text-oren py-3">
                 Pilihan Makanan
@@ -138,11 +138,21 @@
             });
 
             // Attach event listener to the search input
-            $('#search-input').on('keyup', function() {
+            $('#search-input').on('keyup', function () {
                 var searchText = $(this).val().toLowerCase();
+                var $tableRows = $('#data-table tbody tr');
+                var $noDataMessage = $('#no-data-message');
+
+                // Show or hide "silahkan cari makanan" message
+                if (searchText === '') {
+                    $tableRows.hide();
+                    $noDataMessage.text('Silahkan cari makanan').show();
+                    return;
+                }
 
                 // Loop through each table row
-                $('#data-table tbody tr').each(function() {
+                var dataFound = false;
+                $tableRows.each(function () {
                     var rowData = $(this).text().toLowerCase();
 
                     // Show or hide the row based on the search text
@@ -150,8 +160,16 @@
                         $(this).hide();
                     } else {
                         $(this).show();
+                        dataFound = true;
                     }
                 });
+
+                // Show "data tidak ditemukan" message
+                if (!dataFound) {
+                    $noDataMessage.text('Data tidak ditemukan').show();
+                } else {
+                    $noDataMessage.hide();
+                }
             });
 
             // Function to calculate total calorie

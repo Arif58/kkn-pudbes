@@ -11,7 +11,7 @@
 
 <body>
     <div class="bg-putih min-h-screen text-hijau font-poppins">
-        <div class="w-full md:h-[200px] h-[100px] flex justify-center items-center bg-food2 md:bg-food1">
+        <div class="w-full md:h-[200px] h-[100px] flex justify-center items-center bg-food bg-cover bg-center">
             <h1 class="md:text-5xl text-2xl font-bold text-putih">
                 Kalkulator Kalori Makanan
             </h1>

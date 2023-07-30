@@ -9,7 +9,7 @@
 
 <body>
     <div class="bg-putih min-h-screen text-hijau font-poppins flex flex-col">
-        <div class="w-full md:h-[200px] h-[100px] flex justify-center items-center bg-akg2 md:bg-akg1">
+        <div class="w-full md:h-[200px] h-[100px] flex justify-center items-center bg-akg bg-cover bg-center">
             <h1 class="md:text-5xl text-2xl font-bold text-putih">
                 Hitung Angka Kecukupan Gizi
             </h1>

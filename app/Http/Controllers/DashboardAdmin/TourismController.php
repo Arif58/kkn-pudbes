@@ -47,38 +47,41 @@ class TourismController extends Controller
                 $tourism = new Tourism;
                 $tourism->name = $request->name;
                 $tourism->desc = $request->desc;
-                $tourism->address = $request->address;
                 $tourism->link_maps = $request->link_maps;
                 $tourism->save();
                 
                 //save data to tourism_images
-                if ($request->hasFile('image')) {
-                    $uploadedFile = $request->file('image');
-                    $filename = Uuid::uuid4()->toString() . '.' . $uploadedFile->getClientOriginalExtension();
-                    $path = $uploadedFile->move(public_path('images'), $filename);
-                    $image = new TourismImage;
-                    $image->tourism_id = $tourism->id;
-                    $image->image_url = $path;
-                    $image->save();
-                }
+                // if ($request->hasFile('image')) {
+                //     $uploadedFile = $request->file('image');
+                //     $filename = Uuid::uuid4()->toString() . '.' . $uploadedFile->getClientOriginalExtension();
+                //     $path = $uploadedFile->move(public_path('images'), $filename);
+                //     $image = new TourismImage;
+                //     $image->tourism_id = $tourism->id;
+                //     $image->image_url = $path;
+                //     $image->save();
+                // }
 
                 //save multiple image
-                // if ($request->hasFile('image')) {
-                //     foreach ($request->file('image') as $image) {
-                //         $filename = uniqid() . '.' . $image->getClientOriginalExtension();
-                //         $path= $image->storeAs('images', $filename); 
-                        
-                //         $TourismImage = new TourismImage;
-                //         $TourismImage->tourism_id = $tourism->id;
-                //         $TourismImage->image_url = $path;
-                //         $TourismImage->save();
-                //     }
-                // }
+                $image = array();
+                if ($files = $request->file('image')) {
+                    foreach ($files as $file) {
+                        $imageName = Uuid::uuid4()->toString() . '.' . strtolower($file->getClientOriginalExtension());
+                        $path= 'images/wisata/'; 
+                        $imageUrl = $path.$imageName;
+                        $file->move($path,$imageName);
+                        // $image[] = $imageUrl;
+                        $TourismImage = new TourismImage;
+                        $TourismImage->tourism_id = $tourism->id;
+                        $TourismImage->image_url = $imageUrl;
+                        $TourismImage->save();
+                    }
+                }
+                
             });
             return redirect('/dashboard/wisata');
         } catch (QueryException $e) {
             return response()->json([
-                'message' => 'Failed'
+                'message' => $e
             ]);
         }
     }
@@ -94,24 +97,32 @@ class TourismController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tourism $tourism)
+    public function edit($id)
     {
-        //
+        $tourism = Tourism::find($id);
+        return view('dashboard_admin.wisata.edit', compact('tourism'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tourism $tourism)
+    public function update(Request $request, $id)
     {
-        //
+        $tourism = Tourism::find($id);
+        $tourism->name = $request->name;
+        $tourism->desc = $request->desc;
+        $tourism->link_maps = $request->link_maps;
+        $tourism->update();
+        return redirect('/dashboard/wisata');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tourism $tourism)
+    public function destroy($id)
     {
-        //
+        $tourism = Tourism::find($id);
+        $tourism->delete();
+        return redirect('/dashboard/wisata');
     }
 }

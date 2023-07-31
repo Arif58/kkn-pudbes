@@ -17,18 +17,34 @@
                                     <th scope="col">No</th>
                                     <th scope="col">Nama Wisata</th>
                                     <th scope="col">Deskripsi</th>
-                                    <th scope="col">Alamat</th>
                                     <th scope="col">Link Maps</th>
+                                    <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="customtable">
                                 @foreach ($tourisms as $data)
-                                    <tr>
+                                    <tr class="text-wrap">
                                         <td>{{ ++$no }}</td>
                                         <td>{{ $data->name }}</td>
                                         <td>{{ $data->desc }}</td>
-                                        <td>{{ $data->address }}</td>
                                         <td>{{ $data->link_maps }}</td>
+                                        <td class="d-flex align-items-center flex-wrap">
+                                            <div>
+                                                <a class="btn btn-warning" href="{{ route('wisata.edit', $data->id) }}">
+                                                    <i class="far fa-edit"></i>
+                                                </a>
+                                            </div>
+                                            <div class="me-3">
+                                                <form action="{{ route('wisata.destroy', $data->id) }}" method="post">
+                                                    @csrf
+                                                    <button class="btn btn-danger"
+                                                        onClick="return confirm('Yakin Ingin Hapus Tempat Wisata?')">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+
                                     </tr>
                                 @endforeach
                             </tbody>

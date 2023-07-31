@@ -12,9 +12,13 @@
 @section('content')
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+    <style>
+        .main-sidebar {
+            position: fixed;
+        }
+    </style>
 @stop
 
 @section('js')
-
 @stop

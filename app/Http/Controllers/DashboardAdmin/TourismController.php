@@ -8,6 +8,7 @@ use App\Models\Tourism;
 use App\Models\TourismImage;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
 
 class TourismController extends Controller
@@ -49,17 +50,6 @@ class TourismController extends Controller
                 $tourism->desc = $request->desc;
                 $tourism->link_maps = $request->link_maps;
                 $tourism->save();
-                
-                //save data to tourism_images
-                // if ($request->hasFile('image')) {
-                //     $uploadedFile = $request->file('image');
-                //     $filename = Uuid::uuid4()->toString() . '.' . $uploadedFile->getClientOriginalExtension();
-                //     $path = $uploadedFile->move(public_path('images'), $filename);
-                //     $image = new TourismImage;
-                //     $image->tourism_id = $tourism->id;
-                //     $image->image_url = $path;
-                //     $image->save();
-                // }
 
                 //save multiple image
                 $image = array();
@@ -122,7 +112,24 @@ class TourismController extends Controller
     public function destroy($id)
     {
         $tourism = Tourism::find($id);
+        $images = $tourism->images()->orderBy('id', 'desc')->get();
+        foreach ($images as $image) {
+            if (file_exists($image->image_url)) {
+                unlink($image->image_url);
+            }
+
+        }
         $tourism->delete();
         return redirect('/dashboard/wisata');
     }
+
+    public function show_images($id)
+    {
+        $tourism = Tourism::find($id);
+        $images = $tourism->images()->orderBy('id', 'desc')->get();
+        // dd($images);
+        return view('dashboard_admin.wisata.galeri', compact('images'));
+        // return view('dashboard_admin.wisata.edit');
+    }
+
 }

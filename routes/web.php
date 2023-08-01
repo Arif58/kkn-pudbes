@@ -5,7 +5,9 @@
 use App\Http\Controllers\DashboardAdmin\TourismController as AdminDashboardTourismController;
 use App\Http\Controllers\DashboardAdmin\ProfileController as AdminDashboardProfileController;
 use App\Http\Controllers\Client\CalculationController as ClientCalculationController;
+use App\Http\Controllers\Auth\LoginController as AuthLoginController;
 use App\Http\Controllers\Client\FoodController as ClientFoodController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,11 +20,18 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function () {
+
+Route::group(['prefix' => 'login'], function() {
+    Route::get('/', [AuthLoginController::class, 'index'])->name('login')->middleware('guest');
+    Route::post('/', [AuthLoginController::class, 'authenticate']);
+});
+Route::post('/logout', [AuthLoginController::class, 'logout'])->middleware('auth');
+
+Route::get('/', function() {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'dashboard'], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     // menu wisata
     Route::group(['prefix' => 'wisata'], function (){
         Route::get('/', [AdminDashboardTourismController::class, 'index'])->name('wisate.index');
@@ -31,6 +40,7 @@ Route::group(['prefix' => 'dashboard'], function () {
         Route::get('/edit/{id}', [AdminDashboardTourismController::class, 'edit'])->name('wisata.edit');
         Route::post('/update/{id}', [AdminDashboardTourismController::class, 'update'])->name('wisata.update');
         Route::post('/delete/{id}', [AdminDashboardTourismController::class, 'destroy'])->name('wisata.destroy');
+        Route::get('/images/{id}', [AdminDashboardTourismController::class, 'show_images'])->name('display.images');
     
     });
     //menu profile

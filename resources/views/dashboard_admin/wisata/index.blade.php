@@ -1,14 +1,28 @@
 @extends('dashboard_admin.layout')
 @section('title', 'Wisata')
 @section('content')
-    <div class="container pt-3">
-        <div class="row">
-            <div class="col-md-2 offset-md-9">
-                <a class="btn btn-secondary" href="{{ route('wisata.create') }}">
-                    <p>Tambah Wisata</p>
+    <div class="page-section">
+        <div>
+            <div>
+                <h1>
+                    Potensi Wisata
+                </h1>
+            </div>
+
+            <div class="text-right mb-3">
+                <a class="btn btn-primary" href="{{ route('wisata.create') }}">
+                    <div>
+                        <i class="fa fa-plus-square px-1"></i>
+                        <b class="px-1">Tambah</b>
+                        {{-- <div class="col-md-auto">
+                        </div>
+                        <div class="col">
+                            
+                        </div> --}}
+                    </div>
                 </a>
             </div>
-            <div class="col">
+            <div class="">
                 <div class="card">
                     <div class="table-responsive">
                         <table class="table">
@@ -28,13 +42,15 @@
                                         <td>{{ $data->name }}</td>
                                         <td>{{ $data->desc }}</td>
                                         <td>{{ $data->link_maps }}</td>
-                                        <td class="d-flex align-items-center flex-wrap">
-                                            <div>
+                                        {{-- @dd($data->images) --}}
+                                        <td class="d-flex flex-row mb-3">
+                                            <div class="">
                                                 <a class="btn btn-warning" href="{{ route('wisata.edit', $data->id) }}">
                                                     <i class="far fa-edit"></i>
                                                 </a>
                                             </div>
-                                            <div class="me-3">
+
+                                            <div class="px-2">
                                                 <form action="{{ route('wisata.destroy', $data->id) }}" method="post">
                                                     @csrf
                                                     <button class="btn btn-danger"
@@ -43,8 +59,14 @@
                                                     </button>
                                                 </form>
                                             </div>
-                                        </td>
 
+                                            <div class="">
+                                                <a class="btn btn-info" href="{{ route('display.images', $data->id) }}">
+                                                    <i class="fa fa-camera"></i>
+                                                </a>
+
+                                            </div>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -54,4 +76,8 @@
             </div>
         </div>
     </div>
+
+
+
+
 @endsection

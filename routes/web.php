@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardAdmin\ProfileController as AdminDashboardProfi
 use App\Http\Controllers\Client\CalculationController as ClientCalculationController;
 use App\Http\Controllers\Auth\LoginController as AuthLoginController;
 use App\Http\Controllers\Client\FoodController as ClientFoodController;
+use App\Http\Controllers\Client\ProfileController as ClientProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -55,6 +56,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
         Route::post('/edit/misi/{id}', [AdminDashboardProfileController::class, 'update_misi'])->name('misi.update');
     });
 });
+
+Route::get('/profile', [ClientProfileController::class, 'index']);
 
 Route::group(['prefix' => 'kalori'], function() {
     Route::get('/', [ClientFoodController::class, 'index']);

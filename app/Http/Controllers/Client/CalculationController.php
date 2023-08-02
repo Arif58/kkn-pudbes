@@ -9,7 +9,7 @@ class CalculationController extends Controller
 {
     public function index()
     {
-        return view('kalori.akg');
+        return view('client.kalori.akg');
     }
     
     public function calculate(Request $request)
@@ -41,7 +41,7 @@ class CalculationController extends Controller
         $karbohidratGram = $karbohidratKalori / 4;
 
         // Kembalikan hasil kalkulasi ke tampilan
-        return view('kalori.akg', compact('akg', 'proteinGram', 'lemakGram', 'karbohidratGram'));
+        return view('client.kalori.akg', compact('akg', 'proteinGram', 'lemakGram', 'karbohidratGram'));
     }
 
 }

@@ -1,4 +1,4 @@
-<!doctype html>
+{{-- <!doctype html>
 <html>
 
 <head>
@@ -7,13 +7,18 @@
     @vite('resources/css/app.css')
 </head>
 
-<body>
-    <div class="bg-putih min-h-screen text-hijau font-poppins flex flex-col">
+<body> --}}
+@extends('client.layout.template')
+@section('content')
+    <header class="header py-28 text-center md:pt-36 lg:text-left xl:pt-44 xl:pb-32">
         <div class="w-full md:h-[200px] h-[100px] flex justify-center items-center bg-akg bg-cover bg-center">
             <h1 class="md:text-5xl text-2xl font-bold text-putih">
                 Hitung Angka Kecukupan Gizi
             </h1>
         </div>
+    </header>
+    <div class="bg-putih min-h-screen text-hijau font-poppins flex flex-col">
+
         <div class="md:my-10 md:mx-48 m-8 text-sm md:text-lg">
             <p>Selamat datang di website Kalkulator AKG (Angka Kecukupukan Gizi)!</p>
             <p class="text-justify py-5">
@@ -40,7 +45,7 @@
                     <div class="flex justify-center mb-4">
                         <div class="md:basis-1/4"></div>
                         <div class="basis-1/4">
-                            <label for="bb">Berat Badan (kg):</label>    
+                            <label for="bb">Berat Badan (kg):</label>
                         </div>
                         <div class="basis-1/2">
                             <input type="text" id="bb" name="bb" required>
@@ -83,26 +88,29 @@
                         </div>
                     </div>
                     <div class="flex justify-center items-center mb-4">
-                        <button class="text-white bg-hijau font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2" type="submit">Hitung</button>
+                        <button class="text-white bg-hijau font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+                            type="submit">Hitung</button>
                     </div>
                 </div>
             </form>
             <div class="flex justify-center items-center">
                 @if (isset($akg))
-                    <div class="bg-white py-2 md:w-1/2 w-full flex flex-col justify-center items-center rounded-md relative overflow-x-auto shadow-md rounded-lg">
+                    <div
+                        class="bg-white py-2 md:w-1/2 w-full flex flex-col justify-center items-center rounded-md relative overflow-x-auto shadow-md rounded-lg">
                         <b>Kebutuhan per Hari</b>
                         <p>Angka Kecukupan Gizi (AKG): <b class="text-oren">{{ round($akg) }}</b> kalori</p>
                         <p>Kebutuhan Karbohidrat: <b class="text-oren">{{ round($karbohidratGram) }}</b> gram</p>
                         <p>Kebutuhan Protein: <b class="text-oren">{{ round($proteinGram) }}</b> gram</p>
-                        <p>Kebutuhan Lemak: <b class="text-oren">{{ round($lemakGram) }}</b> gram</p>  
-                    </div>                                          
-                @endif                
+                        <p>Kebutuhan Lemak: <b class="text-oren">{{ round($lemakGram) }}</b> gram</p>
+                    </div>
+                @endif
             </div>
         </div>
         <footer class="text-sm text-center py-2 mt-auto">
             © KKN PPM UGM 2023 - PUDING BESAR PERIODE II
         </footer>
     </div>
-</body>
+@endsection
+{{-- </body>
 
-</html>
+</html> --}}

@@ -14,7 +14,7 @@ class FoodController extends Controller
         // $food = Food::orderBy('name', 'asc')->paginate($boundary);
         $food = Food::orderBy('name', 'asc')->get();
         // dd($food);
-        return view('kalori.list', compact('food'));
+        return view('client.kalori.list', compact('food'));
     }
 
     public function calculate()

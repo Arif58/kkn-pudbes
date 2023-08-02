@@ -320,7 +320,7 @@ return [
         // ],
         // ['header' => 'account_settings'],
         [
-            'text' => 'Profile',
+            'text' => 'Profile Kecamatan',
             'url'  => 'dashboard/profile',
             'icon' => 'fas fa-fw fa-laugh-wink',
         ],
@@ -329,11 +329,11 @@ return [
             'url'  => 'dashboard/wisata',
             'icon' => 'fas fa-fw fa-tags',
         ],
-        // [
-        //     'text' => 'Sign Out',
-        //     'url'  => '/logout',
-        //     'icon' => 'fas fa-fw fa-sign-out-alt',
-        // ],
+        [
+            'text' => 'Kunjungi Situs',
+            'url'  => '/profile',
+            'icon' => 'fas fa-fw fa-desktop',
+        ],
         // [
         //     'text'    => 'multilevel',
         //     'icon'    => 'fas fa-fw fa-share',

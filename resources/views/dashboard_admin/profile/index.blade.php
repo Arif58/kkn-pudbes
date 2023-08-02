@@ -186,8 +186,8 @@
                 var buttonDesc = $("#btn-desc");
                 // Show the input field and set its value to the current text
                 inputField.prop("disabled", false);
-                // inputField.style.border = 1 px;
                 buttonDesc.show().val(buttonDesc.prev().text());
+                inputField.focus();
                 // Hide the text content
                 inputField.prev().hide();
             });
@@ -198,7 +198,7 @@
                 // Show the input field and set its value to the current text
                 inputField.prop("disabled", false);
                 buttonHistory.show().val(buttonHistory.prev().text());
-
+                inputField.focus();
                 // Hide the text content
                 inputField.prev().hide();
             });
@@ -209,7 +209,7 @@
                 // Show the input field and set its value to the current text
                 inputField.prop("disabled", false);
                 buttonVisi.show().val(buttonVisi.prev().text());
-
+                inputField.focus();
 
                 // Hide the text content
                 inputField.prev().hide();
@@ -221,6 +221,7 @@
                 // Show the input field and set its value to the current text
                 inputField.prop("disabled", false);
                 buttonMisi.show().val(buttonMisi.prev().text());
+                inputField.focus();
                 inputField.prev().hide();
             });
 

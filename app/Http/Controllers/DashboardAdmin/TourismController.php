@@ -123,13 +123,5 @@ class TourismController extends Controller
         return redirect('/dashboard/wisata');
     }
 
-    public function show_images($id)
-    {
-        $tourism = Tourism::find($id);
-        $images = $tourism->images()->orderBy('id', 'desc')->get();
-        // dd($images);
-        return view('dashboard_admin.wisata.galeri', compact('images'));
-        // return view('dashboard_admin.wisata.edit');
-    }
 
 }

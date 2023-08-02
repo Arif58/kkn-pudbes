@@ -306,11 +306,11 @@ return [
         //     'type' => 'sidebar-menu-search',
         //     'text' => 'search',
         // ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
+        // [
+        //     'text' => 'blog',
+        //     'url'  => 'admin/blog',
+        //     'can'  => 'manage-blog',
+        // ],
         // [
         //     'text'        => 'pages',
         //     'url'         => 'admin/pages',
@@ -329,11 +329,11 @@ return [
             'url'  => 'dashboard/wisata',
             'icon' => 'fas fa-fw fa-tags',
         ],
-        [
-            'text' => 'Sign Out',
-            'url'  => '/logout',
-            'icon' => 'fas fa-fw fa-sign-out-alt',
-        ],
+        // [
+        //     'text' => 'Sign Out',
+        //     'url'  => '/logout',
+        //     'icon' => 'fas fa-fw fa-sign-out-alt',
+        // ],
         // [
         //     'text'    => 'multilevel',
         //     'icon'    => 'fas fa-fw fa-share',

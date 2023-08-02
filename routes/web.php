@@ -3,6 +3,7 @@
 // use App\Http\Controllers\DashboardAdmin\TourismController;
 
 use App\Http\Controllers\DashboardAdmin\TourismController as AdminDashboardTourismController;
+use App\Http\Controllers\DashboardAdmin\TourismImageController as AdminDashboardTourismImageController;
 use App\Http\Controllers\DashboardAdmin\ProfileController as AdminDashboardProfileController;
 use App\Http\Controllers\Client\CalculationController as ClientCalculationController;
 use App\Http\Controllers\Auth\LoginController as AuthLoginController;
@@ -40,7 +41,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
         Route::get('/edit/{id}', [AdminDashboardTourismController::class, 'edit'])->name('wisata.edit');
         Route::post('/update/{id}', [AdminDashboardTourismController::class, 'update'])->name('wisata.update');
         Route::post('/delete/{id}', [AdminDashboardTourismController::class, 'destroy'])->name('wisata.destroy');
-        Route::get('/images/{id}', [AdminDashboardTourismController::class, 'show_images'])->name('display.images');
+        Route::get('/images/{id}', [AdminDashboardTourismImageController::class, 'index'])->name('display.images');
+        Route::post('/image/delete/{tourism_id}/{id}', [AdminDashboardTourismImageController::class, 'destroy'])->name('image.destroy');
+        Route::post('/image/add/{id}', [AdminDashboardTourismImageController::class, 'create'])->name('image.add');
     
     });
     //menu profile

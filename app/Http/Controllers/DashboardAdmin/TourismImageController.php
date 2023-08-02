@@ -1,26 +1,45 @@
 <?php
+namespace App\Http\Controllers\DashboardAdmin;
 
-namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
+use App\Models\Tourism;
 use App\Models\TourismImage;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Validator;
+use Ramsey\Uuid\Uuid;
 class TourismImageController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $tourism = Tourism::find($id);
+        $images = $tourism->images()->orderBy('id', 'desc')->get();
+        // dd($images);
+        return view('dashboard_admin.wisata.galeri', compact('images', 'tourism'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request, $id)
     {
-        //
+        if ($files = $request->file('image')) {
+            foreach ($files as $file) {
+                
+                $imageName = Uuid::uuid4()->toString() . '.' . strtolower($file->getClientOriginalExtension());
+                $path= 'images/wisata/'; 
+                $imageUrl = $path.$imageName;
+                $file->move($path,$imageName);
+                // $image[] = $imageUrl;
+                $TourismImage = new TourismImage;
+                $TourismImage->tourism_id = $id;
+                $TourismImage->image_url = $imageUrl;
+                $TourismImage->save();
+            }
+        }
+        return redirect('/dashboard/wisata/images/'.$id);
     }
 
     /**
@@ -58,8 +77,11 @@ class TourismImageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TourismImage $tourismImage)
+    public function destroy($tourism_id, $id)
     {
-        //
+        $images = TourismImage::find($id);
+        unlink($images->image_url);
+        $images->delete();
+        return redirect('/dashboard/wisata/images/'.$tourism_id);
     }
 }

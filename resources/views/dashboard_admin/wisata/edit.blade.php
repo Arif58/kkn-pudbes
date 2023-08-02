@@ -6,12 +6,12 @@
             @csrf
             <div class="mb-3 w-50">
                 <label for="namaWisata" class="form-label">Nama Wisata</label>
-                <input type="text" name="name" class="form-control" value={{ $tourism->name }}>
+                <input type="text" name="name" class="form-control" value="{{ $tourism->name }}" required>
             </div>
 
             <div class="mb-3 w-50">
                 <label for="desc" class="form-label">Deskripsi Wisata</label>
-                <input type="text" name="desc" class="form-control" value="{{ $tourism->desc }}">
+                <textarea name="desc" class="form-control" rows="10" required>{{ $tourism->desc }}</textarea>
             </div>
 
             <div class="mb-3 w-50">

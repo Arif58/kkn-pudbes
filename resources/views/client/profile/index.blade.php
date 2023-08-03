@@ -5,8 +5,7 @@
         <div class="container px-4 sm:px-8 lg:grid lg:grid-cols-2 lg:gap-x-8">
             <div class="mb-16 lg:mt-32 xl:mt-40 xl:mr-12">
                 <h1 class="h1-large mb-5">Kecamatan Puding Besar</h1>
-                <p class="p-large mb-8">Start getting things done together with your team based on Pavo's revolutionary
-                    team management features</p>
+                <p class="p-large mb-8">Kabupaten Bangka, Provinsi Bangka Belitung</p>
             </div>
             <div class="xl:text-right">
                 <img class="inline" src="images/kantor.jpg" alt="alternative" style="height: 100%" />
@@ -42,14 +41,6 @@
                     <div class="counter-value number-count" data-count="8386">1</div>
                     <p class="counter-info">Perempuan</p>
                 </div>
-                {{-- <div class="cell">
-                    <div class="counter-value number-count" data-count="127">1</div>
-                    <p class="counter-info">Case Studies</p>
-                </div>
-                <div class="cell">
-                    <div class="counter-value number-count" data-count="211">1</div>
-                    <p class="counter-info">Orders Received</p>
-                </div> --}}
             </div>
             <!-- end of counter -->
 

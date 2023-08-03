@@ -6,10 +6,10 @@
 
         <!-- Image Logo -->
         <a class="inline-block mr-4 py-0.5 text-xl whitespace-nowrap hover:no-underline focus:no-underline"
-            href="index.html">
-            <img src="images/Logo.png" alt="alternative" class="h-8" />
+            href="/">
+            <img src="images/logo_bangka.png" alt="alternative" class="h-8" />
         </a>
-        <p>Kecamatan Puding Besar</p>
+        <b>Kecamatan Puding Besar</b>
 
         <button
             class="background-transparent rounded text-xl leading-none hover:no-underline focus:no-underline lg:hidden lg:text-gray-400"
@@ -20,10 +20,10 @@
         <div class="navbar-collapse offcanvas-collapse lg:flex lg:flex-grow lg:items-center" id="navbarsExampleDefault">
             <ul class="pl-0 mt-3 mb-2 ml-auto flex flex-col list-none lg:mt-0 lg:mb-0 lg:flex-row">
                 <li class="mt-1">
-                    <a class="nav-link page-scroll" href="/profile">Profile <span class="sr-only">(current)</span></a>
+                    <a class="nav-link page-scroll" href="{{ route('home') }}">Profile</a>
                 </li>
                 <li class="mt-1">
-                    <a class="nav-link page-scroll" href="{{ route('login') }}">Potensi Wisata</a>
+                    <a class="nav-link page-scroll" href="/potensi_wisata">Potensi Wisata</a>
                 </li>
                 <li class="dropdown mt-1">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"

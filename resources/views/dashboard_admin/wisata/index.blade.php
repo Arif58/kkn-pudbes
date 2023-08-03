@@ -45,7 +45,8 @@
                                         {{-- @dd($data->images) --}}
                                         <td class="d-flex flex-row mb-3">
                                             <div class="">
-                                                <a class="btn btn-warning" href="{{ route('wisata.edit', $data->id) }}">
+                                                <a class="btn btn-warning" href="{{ route('wisata.edit', $data->id) }}"
+                                                    data-bs-toggle="tooltip" data-bs-title="Edit">
                                                     <i class="far fa-edit"></i>
                                                 </a>
                                             </div>
@@ -54,14 +55,17 @@
                                                 <form action="{{ route('wisata.destroy', $data->id) }}" method="post">
                                                     @csrf
                                                     <button class="btn btn-danger"
-                                                        onClick="return confirm('Yakin Ingin Hapus Tempat Wisata?')">
+                                                        onClick="return confirm('Yakin Ingin Hapus Tempat Wisata?')"
+                                                        data-bs-toggle="tooltip" data-bs-title="Hapus">
                                                         <i class="fas fa-trash-alt"></i>
                                                     </button>
                                                 </form>
                                             </div>
 
                                             <div class="">
-                                                <a class="btn btn-info" href="{{ route('display.images', $data->id) }}">
+                                                <a class="btn btn-info" data-bs-toggle="tooltip"
+                                                    data-bs-title="Lihat Gambar"
+                                                    href="{{ route('display.images', $data->id) }}">
                                                     <i class="fa fa-camera"></i>
                                                 </a>
 
@@ -76,7 +80,17 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
+    </script>
 
+    <script>
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    </script>
 
 
 

@@ -75,39 +75,6 @@
                 <h6>Empty Image</h6>
             </div>
         @else
-            {{-- <div class="text-center" style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
-                <div id="carouselExampleFade" class="carousel slide">
-                    <div class="carousel-inner">
-                        @foreach ($images as $image)
-                            <div class="carousel-item active">
-                                <div>
-                                    <img src="{{ asset($image->image_url) }}" class=" justify-content-center"
-                                        style="width: 300px; height: 300px;" alt="...">
-                                </div>
-                                <div class="mt-2 text-center">
-                                    <form action="{{ route('image.destroy', $image->id) }}" method="post">
-                                        @csrf
-                                        <button class="btn btn-danger"
-                                            onClick="return confirm('Yakin Ingin Hapus Tempat Wisata?')">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div> --}}
             <div class="row">
                 @forelse ($images as $image)
                     <div class="col-md-3 mb-4">
@@ -120,7 +87,7 @@
                                         action="{{ route('image.destroy', ['tourism_id' => $tourism->id, 'id' => $image->id]) }}"
                                         method="post">
                                         @csrf
-                                        <button class="btn" onClick="return confirm('Yakin Ingin Hapus Tempat Wisata?')">
+                                        <button class="btn" onClick="return confirm('Yakin Ingin Hapus Gambar?')">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>

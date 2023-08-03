@@ -19,6 +19,7 @@
     <meta property="og:url" content="" /> <!-- where do you want your post to link to -->
     <meta name="twitter:card" content="summary_large_image" /> <!-- to have large image post format in Twitter -->
 
+
     <!-- Webpage Title -->
     <title>Puding Besar</title>
 
@@ -32,8 +33,9 @@
     <link href="css/magnific-popup.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
 
+
     <!-- Favicon  -->
-    <link rel="icon" href="Aimages/favicon.png" />
+    <link rel="icon" href="images/logo_bangka.png" />
 </head>
 
 <body data-spy="scroll" data-target=".fixed-top">
@@ -51,6 +53,7 @@
     <script src="js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
     <script src="js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
     <script src="js/scripts.js"></script> <!-- Custom scripts -->
+
 
 </body>
 

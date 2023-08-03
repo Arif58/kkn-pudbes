@@ -120,7 +120,7 @@
                         @csrf
                         {{-- <p>{{ $profile->visi }}</p> --}}
                         <div>
-                            <textarea type="text" name="visi" id="input-visi">{{ $profile->visi }}</textarea>
+                            <textarea type="text" name="visi" id="input-visi" disabled>{{ $profile->visi }}</textarea>
                             <div style="display: none;" class="row mt-3" id="btn-visi">
                                 <div class="col col-sm-auto">
                                     <button type="submit" class="btn btn-primary">

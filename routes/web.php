@@ -9,6 +9,7 @@ use App\Http\Controllers\Client\CalculationController as ClientCalculationContro
 use App\Http\Controllers\Auth\LoginController as AuthLoginController;
 use App\Http\Controllers\Client\FoodController as ClientFoodController;
 use App\Http\Controllers\Client\ProfileController as ClientProfileController;
+use App\Http\Controllers\Client\PotensiWisataController as ClientPotensiWisataController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,16 +23,28 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', [ClientProfileController::class, 'index'])->name('home');
 
+Route::get('/potensi_wisata', [ClientPotensiWisataController::class, 'index']);
+
+Route::group(['prefix' => 'kalori'], function() {
+    Route::get('/', [ClientFoodController::class, 'index']);
+    Route::post('/calculator', [ClientFoodController::class, 'calculate']);
+});
+
+Route::group(['prefix' => 'akg'], function() {
+    Route::get('/', [ClientCalculationController::class, 'index']);
+    Route::post('/calculator', [ClientCalculationController::class, 'calculate'])->name('calculation.calculate');
+});
 Route::group(['prefix' => 'login'], function() {
     Route::get('/', [AuthLoginController::class, 'index'])->name('login')->middleware('guest');
     Route::post('/', [AuthLoginController::class, 'authenticate']);
 });
 Route::post('/logout', [AuthLoginController::class, 'logout'])->middleware('auth');
 
-Route::get('/', function() {
-    return view('welcome');
-});
+// Route::get('/', function() {
+//     return view('welcome');
+// });
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     // menu wisata
@@ -55,16 +68,4 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
         Route::post('/edit/visi/{id}', [AdminDashboardProfileController::class, 'update_visi'])->name('visi.update');
         Route::post('/edit/misi/{id}', [AdminDashboardProfileController::class, 'update_misi'])->name('misi.update');
     });
-});
-
-Route::get('/profile', [ClientProfileController::class, 'index']);
-
-Route::group(['prefix' => 'kalori'], function() {
-    Route::get('/', [ClientFoodController::class, 'index']);
-    Route::post('/calculator', [ClientFoodController::class, 'calculate']);
-});
-
-Route::group(['prefix' => 'akg'], function() {
-    Route::get('/', [ClientCalculationController::class, 'index']);
-    Route::post('/calculator', [ClientCalculationController::class, 'calculate'])->name('calculation.calculate');
 });
